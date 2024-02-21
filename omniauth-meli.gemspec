@@ -19,6 +19,7 @@ Gem::Specification.new do |gem|
   gem.files         = `git ls-files`.split("\n")
   gem.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   gem.require_paths = ['lib']
+  gem.required_ruby_version = '>= 3.2'
 
   gem.add_dependency 'omniauth', '~> 2.1.2'
   gem.add_dependency 'omniauth-oauth2', '~> 1.8'
