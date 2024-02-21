@@ -6,7 +6,7 @@ doc
 pkg
 spec/reports
 tmp
-.gem
+*.gem
 .rbc
 Gemfile.lock
 
