@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-$LOAD_PATH.push File.expand_path('lib', __dir__)
-
 require_relative 'lib/omniauth/meli/version'
 
 Gem::Specification.new do |gem|
@@ -21,7 +19,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
   gem.required_ruby_version = '>= 3.2'
 
-  gem.add_dependency 'omniauth', '~> 2.1.2'
+  gem.add_dependency 'omniauth', '~> 2.0'
   gem.add_dependency 'omniauth-oauth2', '~> 1.8'
   gem.add_development_dependency 'rspec', '~> 3.5'
   gem.add_development_dependency 'rubocop', '~> 1.50.1'

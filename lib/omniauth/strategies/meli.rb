@@ -4,9 +4,9 @@ require 'omniauth-oauth2'
 
 module OmniAuth
   module Strategies
-    # Omniauth strategy for authenticating with GitHub via OAuth2
+    # Omniauth strategy for authenticating with Mercado Livre via OAuth2
     class Meli < OmniAuth::Strategies::OAuth2
-      option :name, 'mercadolivre'
+      option :name, 'meli'
 
       option :client_options, {
         site: 'https://api.mercadolibre.com',
@@ -40,7 +40,7 @@ module OmniAuth
         super.tap do |params|
           params[:response_type] = 'code'
           params[:client_id] = client.id
-          params[:redirect_uri] = callback_url.to_s.downcase
+          params[:redirect_uri] = callback_url
         end
       end
 
@@ -48,7 +48,7 @@ module OmniAuth
         client.get_token(
           {
             code: request.params['code'],
-            redirect_uri: callback_url.to_s.downcase,
+            redirect_uri: redirect_url,
             client_id: client.id,
             client_secret: client.secret,
             grant_type: 'authorization_code'
@@ -57,7 +57,11 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= access_token.get('users/me', { params: access_token.hash }).parsed || {}
+        @raw_info ||= access_token.get('users/me', params: access_token.to_hash).parsed || {}
+      end
+
+      def redirect_url
+        full_host + callback_path
       end
 
       private
